@@ -71,4 +71,4 @@ We welcome contributions! Follow these steps:
 ## 📩 Contact
 For any queries, reach out:
 - 🔗 **GitHub:** [Vishal-kongari](https://github.com/Vishal-kongari)
-- 📧 **Email:** vishalkongari@example.com
+- 📧 **Email:** kongarivishal111@gmail.com
