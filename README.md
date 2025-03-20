@@ -1,45 +1,74 @@
-from flask import Flask, request, jsonify
-import cv2
-import numpy as np
-import tensorflow as tf
-import os
-from pymongo import MongoClient
-from PIL import Image
 
-# Load pre-trained AI model for species classification
-MODEL_PATH = "model.h5"
-model = tf.keras.models.load_model(MODEL_PATH)
 
-# Initialize Flask app
-app = Flask(__name__)
+# Bio Guardian
 
-# MongoDB setup
-client = MongoClient("mongodb://localhost:27017/")
-db = client["wildlife"]
-collection = db["species"]
+## 🌍 About Bio Guardian
+**Bio Guardian** is an AI-powered **wildlife tracking system** designed to analyze images and videos for identifying endangered species and ensuring wildlife protection. It uses advanced **machine learning models** to classify species and assess potential dangers to wildlife creatures. 
 
-# Define function to classify species
-def classify_species(image_path):
-    image = Image.open(image_path).resize((224, 224))
-    image_array = np.array(image) / 255.0
-    image_array = np.expand_dims(image_array, axis=0)
-    predictions = model.predict(image_array)
-    species = "Unknown"  # Placeholder for actual mapping
-    status = "Not Endangered" if predictions[0][0] < 0.5 else "Endangered"
-    return species, status
+---
 
-# API Endpoint for image classification
-@app.route("/classify", methods=["POST"])
-def classify():
-    if "file" not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
-    file = request.files["file"]
-    file_path = os.path.join("uploads", file.filename)
-    file.save(file_path)
-    species, status = classify_species(file_path)
-    collection.insert_one({"species": species, "status": status})
-    return jsonify({"species": species, "status": status})
+## 🚀 Features
+- 🧪 **Endangered Species Detection** - Identifies wildlife species and checks if they are endangered.
+- 🎥 **Image & Video Analysis** - Uses AI to process images and videos for real-time monitoring.
+- 🛰 **Satellite Imagery Integration** - Helps track species populations and detect environmental threats.
+- 📊 **Interactive Dashboard** - Provides visual insights and analytics on detected species.
+- 🗃 **Multimodal AI Capabilities** - Uses **computer vision & NLP** for conservation research.
 
-# Run the Flask app
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+---
+
+## 🛠 Tech Stack
+- **Programming Language:** Python
+- **Machine Learning:** TensorFlow, OpenCV, Scikit-learn
+- **Computer Vision:** YOLOv8, CNN Models
+- **Data Storage:** MongoDB
+- **Web Frameworks:** Flask, FastAPI
+- **Deployment:** Docker, AWS, Hugging Face
+
+---
+
+## 📌 Installation & Setup
+### Clone the Repository
+```bash
+git clone https://github.com/Vishal-kongari/Bio_guardian.git
+cd Bio_guardian
+```
+
+### Install Requirements
+```bash
+pip install -r requirements.txt
+```
+
+### Run the Application
+#### Run the Backend (FastAPI + Uvicorn)
+```bash
+uvicorn main:app --reload
+```
+
+#### Run the Frontend
+```bash
+npm start
+```
+
+---
+
+## 📝 Requirements
+All dependencies are listed in `requirements.txt`. To install them, run:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📝 Contribution
+We welcome contributions! Follow these steps:
+1. **Fork** the repository.
+2. **Create a new branch** (`feature-xyz`).
+3. **Commit changes** (`git commit -m "Added new feature"`).
+4. **Push** to GitHub and **open a PR**.
+
+---
+
+## 📩 Contact
+For any queries, reach out:
+- 🔗 **GitHub:** [Vishal-kongari](https://github.com/Vishal-kongari)
+- 📧 **Email:** vishalkongari@example.com
