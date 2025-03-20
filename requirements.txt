@@ -1,0 +1,17 @@
+tensorflow
+opencv-python
+scikit-learn
+flask
+fastapi
+uvicorn
+pymongo
+numpy
+pandas
+matplotlib
+seaborn
+requests
+tqdm
+pillow
+torch
+torchvision
+ultralytics
