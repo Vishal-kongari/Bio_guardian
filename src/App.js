@@ -12,7 +12,7 @@ function App() {
     const [filePreview, setFilePreview] = useState(null);
     const [fileName, setFileName] = useState("📂 Choose a file...");
     const [response, setResponse] = useState(null);
-    const [showUploadModal, setShowUploadModal] = useState(false); // Separate modal state
+    const [showUploadModal, setShowUploadModal] = useState(false);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,11 +28,10 @@ function App() {
     const [recentImage, setRecentImage] = useState(null);
     const [report, setReport] = useState("");
     const [processedImage, setProcessedImage] = useState(null);
-    const [showForestModal, setShowForestModal] = useState(false); // Separate modal state
+    const [showForestModal, setShowForestModal] = useState(false);
     const [forestLoading, setForestLoading] = useState(false);
     const [error, setError] = useState("");
 
-    // Handle file upload for Satellite Image Analysis
     const handleFileChange1 = (e, setImage) => {
         const file = e.target.files[0];
         if (file) {
@@ -40,7 +39,6 @@ function App() {
         }
     };
 
-    // Handle Satellite Image Analysis
     const handleAnalyze = async () => {
         if (!pastImage || !recentImage) {
             setError("Please upload both past and recent images.");
@@ -61,8 +59,6 @@ function App() {
             });
 
             const data = await response.json();
-            console.log("Response Data:", data);
-
             setReport(data.report);
 
             if (data.processed_image) {
@@ -73,8 +69,7 @@ function App() {
                 } else {
                     setError("Invalid image format received.");
                 }
-
-                setShowForestModal(true); // Show forest modal
+                setShowForestModal(true);
             } else {
                 setError("Processed image not received from the server.");
             }
@@ -85,7 +80,6 @@ function App() {
         setForestLoading(false);
     };
 
-    // Fetch user location
     const fetchLocation = () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
@@ -104,7 +98,6 @@ function App() {
         fetchLocation();
     }, []);
 
-    // Handle file upload for Image/Video Section
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -114,7 +107,6 @@ function App() {
         }
     };
 
-    // Handle Image/Video upload
     const handleUpload = async () => {
         if (!file) {
             alert("Please select a file to upload.");
@@ -138,14 +130,12 @@ function App() {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            console.log("API Response:", res.data);
-
             if (res.data.confidence === undefined) {
                 throw new Error("Invalid response format");
             }
 
             setResponse(res.data);
-            setShowUploadModal(true); // Show upload modal
+            setShowUploadModal(true);
         } catch (error) {
             console.error("Upload failed", error);
             alert("Error uploading file. Please try again.");
@@ -154,11 +144,10 @@ function App() {
             setFile(null);
             setFilePreview(null);
             setFileName("📂 Choose a file...");
-            document.getElementById("fileInput").value = ""; // Reset input field
+            document.getElementById("fileInput").value = "";
         }
     };
 
-    // Handle document upload for summarization
     const handleDocChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -182,8 +171,6 @@ function App() {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            console.log("API Response:", res.data);
-
             if (res.data && res.data.summary) {
                 setDocSummary(res.data.summary);
             } else {
@@ -200,146 +187,139 @@ function App() {
 
     return (
         <>
-            {/* Navbar */}
             <Navbar expand="lg" className="gradient-navbar" variant="dark" fixed="top">
                 <Container>
-                    <Navbar.Brand href="#home">🌿 Bio Guardian</Navbar.Brand>
+                    <Navbar.Brand href="#home" className="navbar-brand">🌿 Bio Guardian</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#about">About</Nav.Link>
-                            <Nav.Link href="#upload">Upload</Nav.Link>
-                            <Nav.Link href="#contact">Contact</Nav.Link>
+                            <Nav.Link href="#home" className="nav-link">Home</Nav.Link>
+                            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
+                            <Nav.Link href="#upload" className="nav-link">Upload</Nav.Link>
+                            <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
 
-            {/* Home Section */}
+            {/* Hero Section - White Text */}
             <section id="home" className="hero-section">
-                <Container className="text-center text-white">
-                    <h1 className="display-3 fw-bold">Guarding Nature with AI 🌏</h1>
-                    <p className="lead">Analyze images & videos to detect endangered species. Let's protect wildlife together! 🦜🌿</p>
-                    <a href="#upload"><Button className="custom-button" size="lg">Start Analyzing 🧐</Button></a>
+                <Container className="text-center hero-content">
+                <h1 className="hero-heading">Guarding Nature with AI 🌏</h1>
+
+
+                    <p className="lead text-white hero-subheading">Analyze images & videos to detect endangered species. Let's protect wildlife together! 🦜🌿</p>
+                    <a href="#upload"><Button className="custom-button pulse-animation" size="lg">Start Analyzing 🧐</Button></a>
                 </Container>
             </section>
 
-            {/* About Section */}
-            <section id="about" className="py-abc">
+            {/* About Section - Black Text */}
+            <section id="about" className="about-section py-5">
                 <Container>
-                    <h2 className="text-center text-success">🌍 About Bio Guardian</h2>
-                    <p className="text-center">
+                    <h2 className="text-center mb-4">🌍 About Bio Guardian</h2>
+                    <p className="text-center mb-4">
                         Bio Guardian is an AI-powered system that analyzes images and videos to identify endangered species.
                         It helps conservationists protect wildlife by detecting threats and monitoring biodiversity.
                     </p>
-                    <h4 className="text-center text-success">Why it matters?</h4>
+                    <h4 className="text-center mb-3">Why it matters?</h4>
                     <p className="text-center">
                         With growing environmental threats, Bio Guardian empowers organizations, wildlife researchers, and governments with real-time insights to take timely action and protect nature.
-                        It’s a powerful tool in the fight against biodiversity loss and climate change.
+                        It's a powerful tool in the fight against biodiversity loss and climate change.
                     </p>
                 </Container>
             </section>
 
-            {/* Upload Image/Video Section */}
-            <section id="upload" className="py-5">
+            {/* Upload Section - Black Text */}
+            <section id="upload" className="upload-section py-5">
                 <Container className="text-center">
-                    <h2 className="text-center text-green">Upload Image/Video 📷</h2>
-                    <Card className="p-4 shadow-lg mx-auto upload-card">
-                        <Form.Group controlId="fileInput" className="mb-3">
-                            <Form.Label className="custom-file-label">{fileName}</Form.Label>
+                    <h2 className="text-center mb-4">Upload Image 📷</h2>
+                    <Card className="p-4 mx-auto upload-card">
+                        <Form.Group controlId="fileInput" className="mb-4">
+                            <Form.Label className="custom-file-label d-block">{fileName}</Form.Label>
                             <Form.Control type="file" accept="image/*,video/*" onChange={handleFileChange} hidden />
                         </Form.Group>
                         {filePreview && (
-                            <div className="mb-3">
+                            <div className="mb-4 preview-container">
                                 {file?.type?.startsWith("image/") ? (
-                                    <Image src={filePreview} alt="Preview" thumbnail style={{ maxHeight: "200px" }} />
+                                    <Image src={filePreview} alt="Preview" thumbnail className="preview-image" />
                                 ) : (
-                                    <video controls width="100%" style={{ maxHeight: "200px" }}>
+                                    <video controls className="preview-video">
                                         <source src={filePreview} type={file?.type} />
                                         Your browser does not support the video tag.
                                     </video>
                                 )}
                             </div>
                         )}
-                        <Button className="custom-button" onClick={handleUpload} disabled={loading}>
+                        <Button className="custom-button w-100" onClick={handleUpload} disabled={loading}>
                             {loading ? <Spinner animation="border" size="sm" /> : "Analyze 🧐"}
                         </Button>
                     </Card>
                 </Container>
             </section>
 
-            {/* Modal for Upload Image/Video Results */}
+            {/* Modal for Upload Results */}
             <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)} centered>
-                <Modal.Header closeButton style={{ backgroundColor: "#e8f5e9" }}>
-                    <Modal.Title style={{ color: "#388e3c" }}>🌿 AI Wildlife Analysis</Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title>🌿 AI Wildlife Analysis</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="text-center" style={{ backgroundColor: "#f1f8e9" }}>
+                <Modal.Body className="text-center">
                     {response ? (
-                        <>
-                            <h4 style={{ color: "#2e7d32" }}>🐾 Identified Species: <strong>{response.species}</strong></h4>
-                            <h5>📊 Confidence:
+                        <div className="analysis-results">
+                            <h4>🐾 Identified Species: <strong>{response.species}</strong></h4>
+                            <div className="confidence-meter">
+                                <h5>📊 Confidence:</h5>
                                 <ProgressBar
                                     now={response.confidence}
                                     label={`${response.confidence.toFixed(2)}%`}
                                     variant={response.confidence > 80 ? "success" : "warning"}
-                                    style={{ backgroundColor: "#a5d6a7" }}
                                 />
-                            </h5>
-                            <h5>📍 Location:
+                            </div>
+                            <h5 className="location-link">
+                                📍 Location:{" "}
                                 <a
                                     href={`https://www.google.com/maps?q=${response.latitude},${response.longitude}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    style={{ color: "#1b5e20" }}
                                 >
                                     View on Maps
                                 </a>
                             </h5>
-                           
-                            <h5>🔢 Count: <strong>{response.count}</strong></h5>
-                        </>
+                            <h5 className="count-display">🔢 Count: <strong>{response.count}</strong></h5>
+                        </div>
                     ) : (
                         <Spinner animation="border" />
                     )}
                 </Modal.Body>
-                <Modal.Footer style={{ backgroundColor: "#e8f5e9" }}>
-                    <Button
-                        variant="success"
-                        onClick={() => setShowUploadModal(false)}
-                        style={{ backgroundColor: "#388e3c", borderColor: "#388e3c" }}
-                    >
+                <Modal.Footer>
+                    <Button variant="success" onClick={() => setShowUploadModal(false)}>
                         Close
                     </Button>
                 </Modal.Footer>
             </Modal>
 
-            {/* Document Summarization Section */}
-            <section className="py-abc">
-                <div className="flex items-center justify-center h-screen w-screen bg-green-200">
-                    <div className="bg-green-700 p-8 rounded-lg shadow-xl text-black w-full max-w-lg text-center">
-                        <WikipediaSummarizer />
-                    </div>
-                </div>
+            <section className="wikipedia-section py-5 bg-light">
+                <Container>
+                    <WikipediaSummarizer />
+                </Container>
             </section>
 
-            {/* Summarize Documents Section */}
-            <section id="summarize" className="py-5 bg-light">
+            {/* Document Summarization Section - Black Text */}
+            <section id="summarize" className="document-section py-5">
                 <Container className="text-center">
-                    <h2 className="text-center text-green">Summarize Documents 📜</h2>
-                    <Card className="p-4 shadow-lg mx-auto upload-card">
-                        <Form.Group controlId="docFileInput" className="mb-3">
-                            <Form.Label className="custom-file-label">{docFileName}</Form.Label>
+                    <h2 className="text-center mb-4"> Report Snapshot 📜</h2>
+                    <Card className="p-4 mx-auto upload-card">
+                        <Form.Group controlId="docFileInput" className="mb-4">
+                            <Form.Label className="custom-file-label d-block">{docFileName}</Form.Label>
                             <Form.Control type="file" accept=".txt,.pdf" onChange={handleDocChange} hidden />
                         </Form.Group>
 
-                        <Button className="custom-button" onClick={handleDocUpload} disabled={docLoading}>
+                        <Button className="custom-button w-100 mb-3" onClick={handleDocUpload} disabled={docLoading}>
                             {docLoading ? <Spinner animation="border" size="sm" /> : "Summarize 📄"}
                         </Button>
                         {docSummary && (
-                            <Card className="mt-3 p-3 text-start bg-white">
-                                <h5 className="text-success">Summary:</h5>
-                                <p>{docSummary}</p>
+                            <Card className="mt-3 p-3 summary-card">
+                                <h5 className="summary-title">Summary:</h5>
+                                <p className="summary-text">{docSummary}</p>
                             </Card>
                         )}
                     </Card>
@@ -347,60 +327,80 @@ function App() {
             </section>
 
             {/* Biodiversity Dashboard */}
-            <div>
+            <div className="py-5">
                 <BiodiversityDashboard />
             </div>
 
-            {/* Satellite Image Analysis Section */}
-           
-            <section id="forest" className="py-5">
+            {/* Satellite Image Analysis Section - Black Text */}
+            <section id="forest" className="forest-section py-5">
                 <Container className="text-center">
-                    <h2 className="text-center text-green">🌲 Satellite Image Analysis 📷</h2>
-                    <Card className="p-4 shadow-lg mx-auto upload-card" style={{ maxWidth: "600px" }}>
-                        {/* Past Image Upload */}
-                        <Form.Group controlId="pastImageUpload" className="mb-3">
-                            <Form.Label className="fw-bold">Upload Past Image</Form.Label>
+                    <h2 className="text-center mb-4">🌲 Satellite Image Analysis 📷</h2>
+                    <Card className="p-4 mx-auto forest-card">
+                        <Form.Group controlId="pastImageUpload" className="mb-4">
+                            <Form.Label className="upload-label">Upload Past Image</Form.Label>
                             <Form.Control type="file" accept="image/*" onChange={(e) => handleFileChange1(e, setPastImage)} />
-                            {pastImage && <Image src={URL.createObjectURL(pastImage)} thumbnail className="mt-2" style={{ maxHeight: "200px" }} />}
+                            {pastImage && <Image src={URL.createObjectURL(pastImage)} thumbnail className="mt-3 preview-image" />}
                         </Form.Group>
 
-                        {/* Recent Image Upload */}
-                        <Form.Group controlId="recentImageUpload" className="mb-3">
-                            <Form.Label className="fw-bold">Upload Recent Image</Form.Label>
+                        <Form.Group controlId="recentImageUpload" className="mb-4">
+                            <Form.Label className="upload-label">Upload Recent Image</Form.Label>
                             <Form.Control type="file" accept="image/*" onChange={(e) => handleFileChange1(e, setRecentImage)} />
-                            {recentImage && <Image src={URL.createObjectURL(recentImage)} thumbnail className="mt-2" style={{ maxHeight: "200px" }} />}
+                            {recentImage && <Image src={URL.createObjectURL(recentImage)} thumbnail className="mt-3 preview-image" />}
                         </Form.Group>
 
-                        {/* Analyze Button */}
                         <Button className="custom-button w-100" onClick={handleAnalyze} disabled={forestLoading}>
                             {forestLoading ? <Spinner animation="border" size="sm" /> : "Analyze 🧐"}
                         </Button>
 
-                        {/* Error Message */}
-                        {error && <p className="mt-2 text-danger">{error}</p>}
+                        {error && <p className="mt-3 text-danger error-message">{error}</p>}
                     </Card>
                 </Container>
             </section>
+{/* Forest Analysis Modal */}
+<Modal
+  show={showForestModal}
+  onHide={() => setShowForestModal(false)}
+  centered
+>
+  <Modal.Header closeButton>
+    <Modal.Title>🌿 AI Forest Analysis</Modal.Title>
+  </Modal.Header>
 
-            {/* Modal for Satellite Image Analysis Results */}
-            <Modal show={showForestModal} onHide={() => setShowForestModal(false)} centered>
-                <Modal.Header closeButton style={{ backgroundColor: "#e8f5e9" }}>
-                    <Modal.Title style={{ color: "#388e3c" }}>🌿 AI Forest Analysis</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="text-center" style={{ backgroundColor: "#f1f8e9" }}>
-                    {report && <pre className="p-3 bg-light border rounded text-start">{report}</pre>}
-                    {processedImage && <Image src={processedImage} alt="Processed" thumbnail className="mt-3" style={{ maxHeight: "250px" }} />}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowForestModal(false)}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+  <Modal.Body>
+  {processedImage && (
+  <div className="d-flex justify-content-center mt-3">
+    <Image
+      src={processedImage}
+      alt="Processed"
+      thumbnail
+      className="processed-image"
+    />
+  </div>
+)}
+
+    {report && (
+      <pre className="forest-report formatted-report">
+        {report}
+      </pre>
+    )}
+
+    
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setShowForestModal(false)}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
+
+
 
             {/* Footer */}
-            <footer className="gradient-footer text-center text-white py-3">
-                © 2025 Bio Guardian | AI for Wildlife Protection
+            <footer className="gradient-footer text-center py-4">
+                <Container>
+                    <p className="m-0 text-white">© 2025 Bio Guardian | AI for Wildlife Protection</p>
+                </Container>
             </footer>
         </>
     );

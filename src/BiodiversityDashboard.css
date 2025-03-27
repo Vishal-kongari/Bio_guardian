@@ -1,40 +1,227 @@
-/* Light Theme */
-.light {
-    background-color: #f8f9fa;
-    color: #212529;
+/* Biodiversity Dashboard - Theme-Consistent Styling */
+.hiii {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Card Styling to Match Upload/Summary Cards */
+.card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(30, 60, 30, 0.2);
+  transition: all 0.3s ease;
+  border: none;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(30, 60, 30, 0.25);
+}
+
+/* Header Styling */
+.fw-bold {
+  color: var(--primary-green);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Stats Cards */
+.col-md-3 .card {
+  padding: 1.5rem;
+  text-align: center;
+  border-left: 4px solid var(--light-green);
+}
+
+.col-md-3 .card h5 {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.col-md-3 .card p {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin: 0;
+}
+
+/* Content Cards */
+.col-md-6 .card {
+  padding: 1.8rem;
+  min-height: 380px;
+}
+
+.col-md-6 .card h5 {
+  font-size: 1.3rem;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Chart Styling */
+.recharts-wrapper {
+  margin-top: 1rem;
+}
+
+/* Map Styling */
+.leaflet-container {
+  border-radius: 10px;
+  border: 1px solid var(--pale-green);
+}
+
+/* Updates List */
+.list-unstyled {
+  padding-left: 0;
+}
+
+.list-unstyled li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--pale-green);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list-unstyled li:last-child {
+  border-bottom: none;
+}
+
+/* Button Styling */
+.btn-success {
+  background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(46, 204, 113, 0.7);
+}
+
+/* Theme Overrides */
+.dark .card,
+.dark .form-select {
+  background-color: #2d3748;
+  color: #f8f9fa;
+}
+
+.dark .col-md-3 .card p,
+.dark .col-md-6 .card h5,
+.dark .fw-bold {
+  color: #81e6d9;
+}
+
+.forest .card {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.midnight-blue .card {
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+
+.midnight-blue .col-md-3 .card p,
+.midnight-blue .col-md-6 .card h5,
+.midnight-blue .fw-bold {
+  color: #1abc9c;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .col-md-6 .card {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1.5rem !important;
   }
   
-  /* Dark Theme */
-  .dark {
-    background-color: #212529;
-    color: #f8f9fa;
+  .col-md-3 .card p {
+    font-size: 1.5rem;
   }
   
-  /* Forest Theme */
-  .forest {
-    background-color: #2e7d32;
-    color: #fff;
+  .col-md-6 .card {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-3 {
+    margin-bottom: 1rem;
   }
   
-  /* 🌙 Midnight Blue Theme */
-  .midnight-blue {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+  .col-md-3 .card {
+    padding: 1rem;
   }
   
-  .midnight-blue .card {
-    background-color: #34495e;
-    color: #ecf0f1;
+  .col-md-6 .card h5 {
+    font-size: 1.1rem;
   }
-  
-  .midnight-blue .btn-success {
-    background-color: #1abc9c;
-    border-color: #16a085;
+}
+/* Upload Section Styling */
+.uploaded-files-container {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.uploaded-files-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.uploaded-file-item {
+  transition: all 0.2s ease;
+}
+
+.uploaded-file-item:hover {
+  background-color: rgba(40, 167, 69, 0.1) !important;
+}
+
+.uploaded-file-item a {
+  color: var(--primary-green);
+  transition: color 0.2s;
+}
+
+.uploaded-file-item a:hover {
+  color: var(--light-green);
+  text-decoration: underline;
+}
+
+.file-details small {
+  font-size: 0.8rem;
+}
+
+/* Scrollbar Styling */
+.uploaded-files-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.uploaded-files-list::-webkit-scrollbar-track {
+  background: var(--pale-green);
+  border-radius: 3px;
+}
+
+.uploaded-files-list::-webkit-scrollbar-thumb {
+  background: var(--light-green);
+  border-radius: 3px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .uploaded-files-list {
+    max-height: 200px;
   }
-  .card {
-    border: 1px solid red;
-  }
-  .chart-container {
-    height: 300px;
-  }
-    
+}

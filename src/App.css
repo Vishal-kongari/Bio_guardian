@@ -1,39 +1,344 @@
-.gradient-navbar {
-  background: linear-gradient(90deg, #1b5e20, #43a047);
+/* Base Styles */
+:root {
+  --primary-green: #1b5e20;
+  --secondary-green: #2e7d32;
+  --light-green: #43a047;
+  --pale-green: #e8f5e9;
+  --lighter-green: #f1f8e9;
+  --accent-brown: #8d6e63;
+  --accent-blue: #0288d1;
+  --wildlife-orange: #e65100;
+  --leaf-shadow: 0 4px 15px rgba(30, 60, 30, 0.2);
+  --text-glow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
+/* Global Styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  background-color: #f9f9f7;
+  padding-top: 70px;
+}
+
+/* Hero Section */
 .hero-section {
   height: 100vh;
-  background: url("/image.png") no-repeat center center;
- 
-  background-size: cover;
+  background: url("/image.png") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
+.hero-heading {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  align-items: center;
+  text-shadow: var(--text-glow);
+  text-align: center;
+}
+
+.hero-subheading {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: var(--text-glow);
+}
+
+/* Section Backgrounds */
+.about-section {
+  background: linear-gradient(135deg, #e8f5e9, #d8edda);
+  color: #333;
+}
+
+.upload-section {
+  background: linear-gradient(135deg, #d8edda, #c8e6c9);
+  color: #333;
+}
+
+.document-section {
+  background: linear-gradient(135deg, #c8e6c9, #b2dfdb);
+  color: #333;
+}
+
+.forest-section {
+  background: linear-gradient(135deg, #b2dfdb, #a5d6a7);
+}
+
+.wikipedia-section {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+/* Navbar */
+.gradient-navbar {
+  background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+  box-shadow: var(--leaf-shadow);
+}
+
+.navbar-brand, .nav-link {
+  color: white !important;
+}
+
+/* Buttons */
 .custom-button {
-  background-color: #2e7d32;
+  background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+  color: white;
   border: none;
-  transition: 0.3s;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
+  font-size: 0.95rem;
 }
 
 .custom-button:hover {
-  background-color: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(46, 204, 113, 0.7);
 }
 
-.upload-card {
-  max-width: 500px;
-  background-color: #f1f8e9;
-  border-radius: 10px;
+.pulse-animation {
+  animation: pulse 2s infinite;
 }
 
+@keyframes pulse {
+  0% { box-shadow: 0 0 12px rgba(46, 204, 113, 0.5); }
+  50% { box-shadow: 0 0 18px rgba(46, 204, 113, 0.7); }
+  100% { box-shadow: 0 0 12px rgba(46, 204, 113, 0.5); }
+}
+
+/* Unified Compact Card Styles */
+.upload-card, 
+.summary-card, 
+.forest-card, 
+.wikipedia-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--leaf-shadow);
+  transition: all 0.2s ease;
+  color: #333;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto 1.5rem;
+  padding: 1.5rem;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  min-height: 240px;
+}
+
+.upload-card:hover, 
+.summary-card:hover, 
+.forest-card:hover,
+.wikipedia-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(30, 60, 30, 0.2);
+}
+
+/* Card Header */
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--pale-green);
+  padding: 0 0 0.8rem 0;
+  margin-bottom: 1.2rem;
+}
+
+.card-header h2 {
+  color: var(--primary-green);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.card-header h2::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-color: var(--light-green);
+}
+
+.upload-card .card-header h2::before {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>');
+}
+
+.summary-card .card-header h2::before {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>');
+}
+
+.forest-card .card-header h2::before {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 12L9 2 2 12h1.86L0 18h7v4h4v-4h7l-3.86-6z"/></svg>');
+}
+
+.wikipedia-container .card-header h2::before {
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>');
+}
+
+/* Card Content */
+.card-content {
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #444;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.card-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card-content::-webkit-scrollbar-track {
+  background: var(--pale-green);
+  border-radius: 2px;
+}
+
+.card-content::-webkit-scrollbar-thumb {
+  background: var(--light-green);
+  border-radius: 2px;
+}
+
+/* File List */
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+}
+
+.file-list li {
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.4rem;
+  background-color: var(--pale-green);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.file-list li::before {
+  content: "•";
+  color: var(--light-green);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.5em;
+}
+
+/* Summary Text */
+.summary-text {
+  background-color: var(--lighter-green);
+  padding: 1.2rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--light-green);
+  margin-bottom: 1rem;
+}
+
+.summary-text h3 {
+  color: var(--primary-green);
+  margin-top: 0;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Form Elements */
 .custom-file-label {
-  background: #e8f5e9;
-  padding: 10px;
-  border-radius: 5px;
+  color: #333;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
 }
 
+.form-control {
+  color: #333;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* Preview Elements */
+.preview-image, 
+.processed-image, 
+.preview-video {
+  max-height: 180px;
+  border-radius: 6px;
+  border: 1px solid var(--pale-green);
+  margin-bottom: 0.8rem;
+}
+
+/* Footer */
 .gradient-footer {
-  background: linear-gradient(90deg, #43a047, #1b5e20);
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  color: white;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subheading {
+    font-size: 1.1rem;
+  }
+  
+  .upload-card, 
+  .summary-card, 
+  .forest-card, 
+  .wikipedia-container {
+    max-width: 92%;
+    padding: 1.2rem;
+    min-height: 220px;
+  }
+  
+  .card-content {
+    max-height: 280px;
+  }
+  
+  .card-header h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-heading {
+    font-size: 1.8rem;
+  }
+  
+  .upload-card, 
+  .summary-card, 
+  .forest-card, 
+  .wikipedia-container {
+    padding: 1rem;
+    min-height: 200px;
+    border-radius: 10px;
+  }
+  
+  .card-content {
+    max-height: 240px;
+    font-size: 0.9rem;
+  }
+  
+  .custom-button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+  
+  .summary-text {
+    padding: 1rem;
+  }
+}
+.formatted-report {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  background: #f4fff7;
+  padding: 20px;
+  border-radius: 12px;
+  white-space: pre-wrap; /* Important for line wrapping */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }

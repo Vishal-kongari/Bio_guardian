@@ -1,0 +1,132 @@
+/* Wikipedia Summarizer Styles - Matching Card Size */
+.wikipedia-summarizer {
+    max-width: 590px; /* Increased to match other cards */
+    margin: 0 auto 2rem;
+    padding: 1.8rem; /* Increased padding */
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--leaf-shadow);
+    color: #333;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px; /* Added minimum height */
+    transition: all 0.3s ease; /* Added hover transition */
+  }
+  
+  .wikipedia-summarizer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(30, 60, 30, 0.25);
+  }
+  
+  .wikipedia-summarizer h2 {
+    color: var(--primary-green);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid var(--pale-green);
+    padding-bottom: 0.8rem;
+  }
+  
+ 
+  
+  .wikipedia-summarizer input[type="text"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--pale-green);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--lighter-green);
+  }
+  
+  .wikipedia-summarizer input[type="text"]:focus {
+    outline: none;
+    border-color: var(--light-green);
+    box-shadow: 0 0 0 2px rgba(67, 160, 71, 0.2);
+  }
+  
+  .wikipedia-summarizer button {
+    background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
+    display: block;
+    margin: 0 auto 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .wikipedia-summarizer button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(46, 204, 113, 0.7);
+  }
+  
+  .wikipedia-summarizer .summary-container {
+    background: var(--lighter-green);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--light-green);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  
+  .wikipedia-summarizer .summary-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .wikipedia-summarizer .summary-container::-webkit-scrollbar-track {
+    background: var(--pale-green);
+    border-radius: 3px;
+  }
+  
+  .wikipedia-summarizer .summary-container::-webkit-scrollbar-thumb {
+    background: var(--light-green);
+    border-radius: 3px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .wikipedia-summarizer {
+      max-width: 90%;
+      padding: 1.5rem;
+    }
+    
+    .wikipedia-summarizer h2 {
+      font-size: 1.3rem;
+    }
+    
+    .wikipedia-summarizer input[type="text"] {
+      padding: 0.7rem 0.9rem;
+    }
+    
+    .wikipedia-summarizer button {
+      padding: 8px 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .wikipedia-summarizer {
+      padding: 1.2rem;
+      min-height: 200px;
+    }
+    
+    .wikipedia-summarizer h2 {
+      font-size: 1.2rem;
+    }
+    
+    .wikipedia-summarizer .summary-container {
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  }

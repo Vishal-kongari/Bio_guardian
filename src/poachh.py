@@ -82,7 +82,7 @@ def detect_poaching_activity(image_path):
                 #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
 
     # Save the output image
-    output_path = "poacher_1detected.jpg"
+    output_path = "poacher_detected.jpg"
     cv2.imwrite(output_path, img)
 
     # Generate AI-generated textual report based on detections
@@ -104,7 +104,7 @@ def detect_poaching_activity(image_path):
     return output_path, description, detected_objects, person_count, weapons_found, weapon_count, animal_count, detected_animals
 
 # Example usage
-output_image, detection_report, detected_items, num_persons, detected_weapons, weapon_count, animals_num, detected_animal_list = detect_poaching_activity("src/finee.png")
+output_image, detection_report, detected_items, num_persons, detected_weapons, weapon_count, animals_num, detected_animal_list = detect_poaching_activity("src/noWeapon.jpg")
 
 # Print AI-generated report
 print(f"Detection Report: {detection_report}")

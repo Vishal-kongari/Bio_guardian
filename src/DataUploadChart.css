@@ -1,0 +1,97 @@
+.file-upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .file-button {
+    font-family: 'Poppins', sans-serif;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #7ee8fa, #80ffea, #a685e2);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(167, 133, 226, 0.4);
+    transition: all 0.3s ease-in-out;
+    animation: fadeInUp 0.6s ease;
+  }
+  
+  .file-button:hover {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 10px rgba(167, 133, 226, 0.6),
+      0 0 25px rgba(126, 232, 250, 0.4);
+  }
+  
+  /* Optional animation (match your other fadeInUp) */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+.chart-container {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom right, #d1fae5, #dbf4ff, #ede9fe);
+    animation: fadeInUp 1s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .upload-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #22543d;
+    margin-bottom: 1rem;
+  }
+  
+  .file-input {
+    margin-bottom: 1.5rem;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #9ae6b4;
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .file-input:focus {
+    outline: none;
+    border-color: #9ae6b4;
+    box-shadow: 0 0 0 3px rgba(154, 230, 180, 0.5);
+  }
+  
+  .chart-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #6b46c1;
+    margin-bottom: 0.75rem;
+  }
+  
+  .chart-wrapper {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .glow {
+    box-shadow: 0 0 10px #48bb78, 0 0 20px #48bb78, 0 0 30px #48bb78;
+  }
+  

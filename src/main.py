@@ -183,7 +183,7 @@ async def predict_species(
             
             #log_to_csv(image_name, tiger_name, confidence, latitude, longitude, count)
             print(tiger_name, confidence, latitude, longitude, count)
-            send_sms(tiger_name, confidence, latitude, longitude, count)
+            #send_sms(tiger_name, confidence, latitude, longitude, count)
             
             return {
                 "species": tiger_name,
@@ -201,7 +201,7 @@ async def predict_species(
         # ✅ Log and Notify
         #log_to_csv(image_name, species_name, confidence, latitude, longitude, species_count[species_name])
         
-        send_sms(species_name, confidence, latitude, longitude, species_count[species_name])
+        #send_sms(species_name, confidence, latitude, longitude, species_count[species_name])
         print(species_name, confidence, latitude, longitude, species_count[species_name])
 
         return {
