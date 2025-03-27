@@ -306,7 +306,7 @@ function App() {
             {/* Document Summarization Section - Black Text */}
             <section id="summarize" className="document-section py-5">
                 <Container className="text-center">
-                    <h2 className="text-center mb-4"> Report Snapshot 📜</h2>
+                    <h2 className="text-center mb-4"> Research Snapshot 📜</h2>
                     <Card className="p-4 mx-auto upload-card">
                         <Form.Group controlId="docFileInput" className="mb-4">
                             <Form.Label className="custom-file-label d-block">{docFileName}</Form.Label>
