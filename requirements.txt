@@ -16,3 +16,4 @@ torch
 torchvision
 ultralytics
 spacy
+pdfplumber
