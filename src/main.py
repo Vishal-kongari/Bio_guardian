@@ -354,3 +354,8 @@ def detect_and_analyze_forest_changes(old_image_path, new_image_path, output_pat
     return output_path, report
 
 
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))  # Render sets PORT env var
+    uvicorn.run("src.main:app", host="0.0.0.0", port=port, reload=False)
