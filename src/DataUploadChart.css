@@ -1,97 +1,135 @@
-.file-upload-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .file-input {
-    display: none;
-  }
-  
-  .file-button {
-    font-family: 'Poppins', sans-serif;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, #7ee8fa, #80ffea, #a685e2);
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(167, 133, 226, 0.4);
-    transition: all 0.3s ease-in-out;
-    animation: fadeInUp 0.6s ease;
-  }
-  
-  .file-button:hover {
-    transform: scale(1.05);
-    box-shadow:
-      0 0 10px rgba(167, 133, 226, 0.6),
-      0 0 25px rgba(126, 232, 250, 0.4);
-  }
-  
-  /* Optional animation (match your other fadeInUp) */
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+/* Base Styles */
 .chart-container {
-    padding: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to bottom right, #d1fae5, #dbf4ff, #ede9fe);
-    animation: fadeInUp 1s ease;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .upload-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #22543d;
-    margin-bottom: 1rem;
-  }
-  
-  .file-input {
-    margin-bottom: 1.5rem;
-    display: block;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid #9ae6b4;
-    border-radius: 1rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
-  
-  .file-input:focus {
-    outline: none;
-    border-color: #9ae6b4;
-    box-shadow: 0 0 0 3px rgba(154, 230, 180, 0.5);
-  }
-  
-  .chart-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #6b46c1;
-    margin-bottom: 0.75rem;
-  }
-  
-  .chart-wrapper {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  }
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom right, #d1fae5, #dbf4ff, #ede9fe);
+  font-family: 'Poppins', sans-serif;
+  max-width: 900px;
+  margin: 20px auto;
+  animation: fadeIn 0.6s ease;
+}
 
-  .glow {
-    box-shadow: 0 0 10px #48bb78, 0 0 20px #48bb78, 0 0 30px #48bb78;
+.upload-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #22543d;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Upload Controls */
+.upload-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.file-upload-wrapper {
+  position: relative;
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.file-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #7ee8fa, #80ffea, #a685e2);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(167, 133, 226, 0.4);
+  transition: all 0.3s ease;
+}
+
+.file-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(167, 133, 226, 0.6);
+}
+
+.file-info {
+  padding: 8px;
+  max-width: 300px;
+}
+
+.file-info-text {
+  font-size: 14px;
+  color: #4a5568;
+  margin: 4px 0;
+}
+
+.file-name {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(154, 230, 180, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+/* Chart Styles */
+.chart-content {
+  animation: fadeIn 0.5s ease;
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #6b46c1;
+  margin-bottom: 12px;
+}
+
+.chart-wrapper {
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Error Message */
+.error-message {
+  color: #e53e3e;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background-color: rgba(229, 62, 62, 0.1);
+  border-radius: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upload-controls {
+    flex-direction: column;
+    align-items: flex-start;
   }
   
+  .file-info {
+    max-width: 100%;
+  }
+  
+  .chart-container {
+    padding: 16px;
+  }
+}

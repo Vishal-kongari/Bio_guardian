@@ -10,18 +10,31 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import "animate.css";
-import "./DataUploadChart.css"; // ⬅️ Import CSS file
+import "./DataUploadChart.css";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const DataUploadChart = () => {
   const [chartData, setChartData] = useState(null);
   const [speciesMap, setSpeciesMap] = useState({});
+  const [fileName, setFileName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (!file) return;
+
+    const validTypes = [
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "text/csv",
+    ];
+    if (!validTypes.includes(file.type)) {
+      setErrorMessage("❌ Only .xlsx and .csv files are allowed.");
+      return;
+    }
+
+    setErrorMessage("");
+    setFileName(file.name);
 
     const reader = new FileReader();
     reader.readAsBinaryString(file);
@@ -35,7 +48,10 @@ const DataUploadChart = () => {
   };
 
   const processChartData = (data) => {
-    if (!data || data.length === 0) return;
+    if (!data || data.length === 0) {
+      setErrorMessage("❌ File is empty or couldn't be read.");
+      return;
+    }
 
     const firstRow = data[0];
     const yearKey = Object.keys(firstRow).find((key) => key.toLowerCase().includes("year"));
@@ -43,7 +59,7 @@ const DataUploadChart = () => {
     const speciesKey = Object.keys(firstRow).find((key) => key.toLowerCase().includes("species name"));
 
     if (!yearKey || !countKey || !speciesKey) {
-      alert("Invalid file format! Ensure it has 'Year', 'Species Count', and 'Species Name' columns.");
+      setErrorMessage("❌ Invalid file format! Required columns: 'Year', 'Species Count', 'Species Name'");
       return;
     }
 
@@ -72,17 +88,39 @@ const DataUploadChart = () => {
   };
 
   return (
-    <div className="chart-container animate__animated animate__fadeInUp">
+    <div className="chart-container">
       <h2 className="upload-title">🌱 Upload Biodiversity Dataset</h2>
-      <input
-        type="file"
-        accept=".xlsx, .csv"
-        onChange={handleFileUpload}
-        className="file-input"
-      />
+      
+      <div className="upload-controls">
+        <div className="file-upload-wrapper">
+          <input
+            id="fileUpload"
+            type="file"
+            accept=".xlsx, .csv"
+            onChange={handleFileUpload}
+            className="file-input"
+          />
+          <label htmlFor="fileUpload" className="file-button">
+            📁 Upload Dataset
+          </label>
+        </div>
+        
+        <div className="file-info">
+          <p className="file-info-text">📁 File format: .xlsx and .csv</p>
+          <p className="file-info-text">🧾 Required columns: 'Year', 'Species Count', 'Species Name'</p>
+        </div>
+        
+        {fileName && (
+          <span className="file-name">✅ {fileName}</span>
+        )}
+      </div>
+
+      {errorMessage && (
+        <div className="error-message">{errorMessage}</div>
+      )}
 
       {chartData && (
-        <div>
+        <div className="chart-content">
           <h3 className="chart-title">📊 Biodiversity Trends</h3>
           <div className="chart-wrapper">
             <Bar
