@@ -37,7 +37,7 @@ app = FastAPI()
 # ✅ Allow CORS for React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://bio-guardian-gdsc.vercel.app"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -356,6 +356,4 @@ def detect_and_analyze_forest_changes(old_image_path, new_image_path, output_pat
 
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Render sets PORT env var
-    uvicorn.run("src.main:app", host="0.0.0.0", port=port, reload=False)
+
