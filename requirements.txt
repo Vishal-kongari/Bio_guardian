@@ -1,6 +1,7 @@
 # Core Libraries
 numpy==1.23.5
 tensorflow==2.11.0
+scikit-learn
 
 # NLP & Text Processing
 spacy==3.6.0
